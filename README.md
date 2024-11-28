@@ -269,6 +269,7 @@ loadstring(game:HttpGet("https://pastebin.com/raw/2n6FV7Sc"))()
 local pvpTab = Window:CreateTab("PvP", 4483362458) -- Title, Image
 
 
+
 local isHitting = false
 local Toggle = pvpTab:CreateToggle({
    Name = "kill aura👻",
@@ -302,9 +303,11 @@ end
 
 
 
-local Button = pvpTab:CreateButton({
-   Name = "Button",
-   Callback = function()
+local Toggle = pvpTab:CreateToggle({
+   Name = "farme kill",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
    local newDamage = 5 -- Changez cette valeur pour définir les nouveaux dégâts
 
 local args = {
@@ -323,6 +326,7 @@ if isHitting then
         end
     end)
 end
-   -- The function that takes place when the button is pressed
+   -- The function that takes place when the toggle is pressed
+   -- The variable (Value) is a boolean on whether the toggle is true or false
    end,
 })
