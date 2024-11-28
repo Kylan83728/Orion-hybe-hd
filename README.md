@@ -273,18 +273,17 @@ local args = {
     [2] = 1
 }
 
- isHitting = Value
+local isHitting = true -- Assurez-vous que cette variable est définie selon votre logique
 
-        if isHitting then
-            -- Lancer une boucle non bloquante
-            task.spawn(function()
-                while isHitting do
-
-game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
-task.wait(0.1) -- Pause
-end
-            end)
+if isHitting then
+    -- Lancer une boucle non bloquante
+    task.spawn(function()
+        while isHitting do
+            game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
+            task.wait(0.1) -- Pause de 0.1 seconde
         end
+    end)
+end
    -- The function that takes place when the toggle is pressed
    -- The variable (Value) is a boolean on whether the toggle is true or false
    end,
