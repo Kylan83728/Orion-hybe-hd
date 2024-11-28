@@ -308,7 +308,7 @@ local Toggle = pvpTab:CreateToggle({
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-   local newDamage = 5 -- Changez cette valeur pour définir les nouveaux dégâts
+   local newDamage = 100000 -- Changez cette valeur pour définir les nouveaux dégâts
 
 local args = {
     [1] = game:GetService("Players").LocalPlayer.Character.Humanoid,
