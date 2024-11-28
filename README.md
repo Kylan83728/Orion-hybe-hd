@@ -309,13 +309,22 @@ local Input = pvpTab:CreateInput({
    RemoveTextAfterFocusLost = false,
    Flag = "Input1",
    Callback = function(Text)
+   -- The function that takes place when the input is changed
+   -- The variable (Text) is a string for the value in the text box
+   end,
+})
+
+
+
+local Button = Tab:CreateButton({
+   Name = "Button",
+   Callback = function()
    local args = {
     [1] = game:GetService("Players").LocalPlayer,
     [2] = "request_accepted"
 }
 
 game:GetService("ReplicatedStorage").Events.CarryEvent:FireServer(unpack(args))
-   -- The function that takes place when the input is changed
-   -- The variable (Text) is a string for the value in the text box
+   -- The function that takes place when the button is pressed
    end,
 })
