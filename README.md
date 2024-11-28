@@ -330,7 +330,7 @@ local Toggle = hommeTab:CreateToggle({
 while true do
     game:GetService("ReplicatedStorage").Events.NPCDamageEvent:FireServer(unpack(args))
 task.wait(0.01) -- Pause
-    wait(0.1)  -- Attendre 1 seconde entre chaque envoi pour éviter une surcharge
+    wait(0.01)  -- Attendre 1 seconde entre chaque envoi pour éviter une surcharge
 end
 end
             end)
