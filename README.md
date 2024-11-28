@@ -302,29 +302,27 @@ end
 
 
 
-local Input = pvpTab:CreateInput({
-   Name = "carry player",
-   CurrentValue = "",
-   PlaceholderText = "Input Placeholder",
-   RemoveTextAfterFocusLost = false,
-   Flag = "Input1",
-   Callback = function(Text)
-   -- The function that takes place when the input is changed
-   -- The variable (Text) is a string for the value in the text box
-   end,
-})
-
-
-
 local Button = pvpTab:CreateButton({
    Name = "Button",
    Callback = function()
-   local args = {
-    [1] = game:GetService("Players").LocalPlayer,
-    [2] = "request_accepted"
+   local newDamage = 5 -- Changez cette valeur pour définir les nouveaux dégâts
+
+local args = {
+    [1] = game:GetService("Players").LocalPlayer.Character.Humanoid,
+    [2] = newDamage -- Utilisez newDamage ici
 }
 
-game:GetService("ReplicatedStorage").Events.CarryEvent:FireServer(unpack(args))
+isHitting = Value
+
+if isHitting then
+    -- Lancer une boucle non bloquante
+    task.spawn(function()
+        while isHitting do
+            game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
+            task.wait(0.1) -- Pause
+        end
+    end)
+end
    -- The function that takes place when the button is pressed
    end,
 })
