@@ -33,7 +33,11 @@ local Window = Rayfield:CreateWindow({
    }
 })
 
+
+
 local farmTab = Window:CreateTab("Farm", 4483362458) -- Title, Image
+
+
 
 local Toggle = farmTab:CreateToggle({
    Name = "farm Spawn👊🔥",
@@ -88,6 +92,8 @@ end
    end,
 })
 
+
+
 local isHitting = false
 local Toggle = farmTab:CreateToggle({
    Name = "farm 5k🔥👊",
@@ -117,6 +123,8 @@ end
    end,
 })
 
+
+
 local Toggle = farmTab:CreateToggle({
    Name = "fire ball spawn🔥",
    CurrentValue = false,
@@ -144,6 +152,8 @@ end
    -- The variable (Value) is a boolean on whether the toggle is true or false
    end,
 })
+
+
 
 local isHitting = false
 local Toggle = farmTab:CreateToggle({
@@ -173,6 +183,8 @@ end
    end,
 })
 
+
+
 local isHitting = false
 local Toggle = farmTab:CreateToggle({
    Name = "auto coin",
@@ -195,6 +207,8 @@ end)
    -- The variable (Value) is a boolean on whether the toggle is true or false
    end,
 })
+
+
 
 local isHitting = false
 local Toggle = farmTab:CreateToggle({
@@ -240,6 +254,8 @@ end
    end,
 })
 
+
+
 local Button = farmTab:CreateButton({
    Name = "anti afk😴",
    Callback = function()
@@ -248,4 +264,299 @@ loadstring(game:HttpGet("https://pastebin.com/raw/2n6FV7Sc"))()
    end,
 })
 
+
+
 local titreTab = Window:CreateTab("Farm titre", 4483362458) -- Title, Image
+
+
+
+local isHitting = false
+local Toggle = titreTab:CreateToggle({
+   Name = "farm kill❤️",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+local args = {
+    [1] = game:GetService("Players").LocalPlayer.Character.Humanoid,
+    [2] = 3
+}
+
+ isHitting = Value
+
+        if isHitting then
+            -- Lancer une boucle non bloquante
+            task.spawn(function()
+                while isHitting do
+
+game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(:FireServer(unpack(args))
+task.wait(0.1) -- Pause
+end
+            end)
+        end
+   -- The function that takes place when the toggle is pressed
+   -- The variable (Value) is a boolean on whether the toggle is true or false
+   end,
+})
+
+
+
+local pvpTab = Window:CreateTab("PvP", 4483362458) -- Title, Image
+
+
+
+local isHitting = false
+local Toggle = pvpTab:CreateToggle({
+   Name = "👻kill aura 10",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local attackRange = 10 -- Distance à laquelle l'aura peut attaquer
+local isAttacking = true -- Contrôle si l'aura est active
+
+-- Fonction pour attaquer les joueurs à proximité
+local function attackNearbyPlayers()
+    while isAttacking do
+        wait(0.1) -- Délai entre les attaques
+
+        -- Vérifie tous les joueurs dans le jeu
+        for _, targetPlayer in pairs(game.Players:GetPlayers()) do
+            if targetPlayer ~= player and targetPlayer.Character and targetPlayer.Character:FindFirstChild("Humanoid") then
+                local targetHumanoid = targetPlayer.Character.Humanoid
+                local distance = (character.HumanoidRootPart.Position - targetPlayer.Character.HumanoidRootPart.Position).magnitude
+
+                if distance <= attackRange then
+                    -- Prépare les arguments pour l'attaque
+                    local args = {
+                        [1] = targetHumanoid,
+                        [2] = 1
+                    }
+
+ isHitting = Value
+
+        if isHitting then
+            -- Lancer une boucle non bloquante
+            task.spawn(function()
+                while isHitting do
+
+                    -- Envoie l'attaque au serveur
+                    game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer:FireServer(unpack(args))
+task.wait(0.1) -- Pause
+                    print("Attaque lancée sur " .. targetPlayer.Name) -- Message de débogage
+                end
+            end
+        end
+    end
+end
+end
+            end)
+        end
+
+
+attackNearbyPlayers()
+   -- The function that takes place when the toggle is pressed
+   -- The variable (Value) is a boolean on whether the toggle is true or false
+   end,
+})
+
+
+
+local isHitting = false
+local Toggle = pvpTab:CreateToggle({
+   Name = "👻kill aura 30",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local attackRange = 30 -- Distance à laquelle l'aura peut attaquer
+local isAttacking = true -- Contrôle si l'aura est active
+
+-- Fonction pour attaquer les joueurs à proximité
+local function attackNearbyPlayers()
+    while isAttacking do
+        wait(0.1) -- Délai entre les attaques
+
+        -- Vérifie tous les joueurs dans le jeu
+        for _, targetPlayer in pairs(game.Players:GetPlayers()) do
+            if targetPlayer ~= player and targetPlayer.Character and targetPlayer.Character:FindFirstChild("Humanoid") then
+                local targetHumanoid = targetPlayer.Character.Humanoid
+                local distance = (character.HumanoidRootPart.Position - targetPlayer.Character.HumanoidRootPart.Position).magnitude
+
+                if distance <= attackRange then
+                    -- Prépare les arguments pour l'attaque
+                    local args = {
+                        [1] = targetHumanoid,
+                        [2] = 1
+                    }
+
+ isHitting = Value
+
+        if isHitting then
+            -- Lancer une boucle non bloquante
+            task.spawn(function()
+                while isHitting do
+
+                    -- Envoie l'attaque au serveur
+                    game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer:FireServer(unpack(args))
+task.wait(0.1) -- Pause
+                    print("Attaque lancée sur " .. targetPlayer.Name) -- Message de débogage
+                end
+            end
+        end
+    end
+end
+end
+            end)
+        end
+
+
+attackNearbyPlayers()
+   -- The function that takes place when the toggle is pressed
+   -- The variable (Value) is a boolean on whether the toggle is true or false
+   end,
+})
+
+
+
+local isHitting = false
+local Toggle = pvpTab:CreateToggle({
+   Name = "👻kill aura 50",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local attackRange = 50 -- Distance à laquelle l'aura peut attaquer
+local isAttacking = true -- Contrôle si l'aura est active
+
+-- Fonction pour attaquer les joueurs à proximité
+local function attackNearbyPlayers()
+    while isAttacking do
+        wait(0.1) -- Délai entre les attaques
+
+        -- Vérifie tous les joueurs dans le jeu
+        for _, targetPlayer in pairs(game.Players:GetPlayers()) do
+            if targetPlayer ~= player and targetPlayer.Character and targetPlayer.Character:FindFirstChild("Humanoid") then
+                local targetHumanoid = targetPlayer.Character.Humanoid
+                local distance = (character.HumanoidRootPart.Position - targetPlayer.Character.HumanoidRootPart.Position).magnitude
+
+                if distance <= attackRange then
+                    -- Prépare les arguments pour l'attaque
+                    local args = {
+                        [1] = targetHumanoid,
+                        [2] = 1
+                    }
+
+ isHitting = Value
+
+        if isHitting then
+            -- Lancer une boucle non bloquante
+            task.spawn(function()
+                while isHitting do
+
+                    -- Envoie l'attaque au serveur
+                    game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer:FireServer(unpack(args))
+task.wait(0.1) -- Pause
+                    print("Attaque lancée sur " .. targetPlayer.Name) -- Message de débogage
+                end
+            end
+        end
+    end
+end
+end
+            end)
+        end
+
+
+attackNearbyPlayers()
+   -- The function that takes place when the toggle is pressed
+   -- The variable (Value) is a boolean on whether the toggle is true or false
+   end,
+})
+
+
+
+local isHitting = false
+local Toggle = pvpTab:CreateToggle({
+   Name = "👻kill aura 100",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local attackRange = 100 -- Distance à laquelle l'aura peut attaquer
+local isAttacking = true -- Contrôle si l'aura est active
+
+-- Fonction pour attaquer les joueurs à proximité
+local function attackNearbyPlayers()
+    while isAttacking do
+        wait(0.1) -- Délai entre les attaques
+
+        -- Vérifie tous les joueurs dans le jeu
+        for _, targetPlayer in pairs(game.Players:GetPlayers()) do
+            if targetPlayer ~= player and targetPlayer.Character and targetPlayer.Character:FindFirstChild("Humanoid") then
+                local targetHumanoid = targetPlayer.Character.Humanoid
+                local distance = (character.HumanoidRootPart.Position - targetPlayer.Character.HumanoidRootPart.Position).magnitude
+
+                if distance <= attackRange then
+                    -- Prépare les arguments pour l'attaque
+                    local args = {
+                        [1] = targetHumanoid,
+                        [2] = 1
+                    }
+
+ isHitting = Value
+
+        if isHitting then
+            -- Lancer une boucle non bloquante
+            task.spawn(function()
+                while isHitting do
+
+                    -- Envoie l'attaque au serveur
+                    game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer:FireServer(unpack(args))
+task.wait(0.1) -- Pause
+                    print("Attaque lancée sur " .. targetPlayer.Name) -- Message de débogage
+                end
+            end
+        end
+    end
+end
+end
+            end)
+        end
+
+
+attackNearbyPlayers()
+   -- The function that takes place when the toggle is pressed
+   -- The variable (Value) is a boolean on whether the toggle is true or false
+   end,
+})
+
+
+
+local isHitting = false
+local Toggle = pvpTab:CreateToggle({
+   Name = "👻kill aura 1000",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local attackRange = 1000 -- Distance à laquelle l'aura peut attaquer
+local isAttacking = true -- Contrôle si l'aura est active
+
+-- Fonction pour attaquer les joueurs à proximité
+local function attackNearbyPlayers()
+    while isAttacking do
+        wait(0.1) -- Délai entre les attaques
+
+        -- Vérifie tous les joueurs dans le jeu
+        for _, targetPlayer in pairs(game.Players:GetPlayers()) do
+            if targetPl
