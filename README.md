@@ -276,8 +276,8 @@ local Toggle = pvpTab:CreateToggle({
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-local distance = 50 -- Définissez la distance souhaitée ici
-
+local distance = 50 -- Distance souhaitée
+local damageAmount = 1000000 -- Montant de dégâts
 local player = game:GetService("Players"):FindFirstChild("1laaa_0")
 local character = player and player.Character
 local humanoid = character and character:FindFirstChildOfClass("Humanoid")
@@ -287,11 +287,14 @@ local function damageNearbyPlayers()
     for _, targetPlayer in ipairs(players) do
         if targetPlayer ~= player then
             local targetCharacter = targetPlayer.Character
-            if targetCharacter and (targetCharacter:WaitForChild("HumanoidRootPart").Position - humanoid.RootPart.Position).magnitude <= distance then
-                -- Ici, vous pouvez infliger des dégâts au joueur
-                local targetHumanoid = targetCharacter:FindFirstChildOfClass("Humanoid")
-                if targetHumanoid then
-                    targetHumanoid:TakeDamage(10) -- Changez 10 pour le montant de dégâts souhaité
+            if targetCharacter and targetCharacter:FindFirstChild("HumanoidRootPart") then
+                local targetPosition = targetCharacter.HumanoidRootPart.Position
+                if (targetPosition - humanoid.RootPart.Position).magnitude <= distance then
+                    -- Infliger des dégâts au joueur
+                    local targetHumanoid = targetCharacter:FindFirstChildOfClass("Humanoid")
+                    if targetHumanoid then
+                        targetHumanoid:TakeDamage(damageAmount)
+                    end
                 end
             end
         end
@@ -305,7 +308,7 @@ if isHitting then
     task.spawn(function()
         while isHitting do
             damageNearbyPlayers()
-            task.wait(0.1) -- Pause
+            task.wait(0.1) -- Pause de 0.1 seconde
         end
     end)
 end
