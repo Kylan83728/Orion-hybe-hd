@@ -263,6 +263,10 @@ local titreTab = Window:CreateTab("Farm titre", 4483362458) -- Title, Image
 
 
 
+local Paragraph = titreTab:CreateParagraph({Title = "activer tout", Content = "activer tout"})
+
+
+
 local isHitting = false
 local Toggle = titreTab:CreateToggle({
    Name = "farm kill❤️",
@@ -298,65 +302,52 @@ local Toggle = titreTab:CreateToggle({
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-local isHitting = Value -- Assurez-vous que 'Value' est défini correctement
+local args = {
+    [1] = "NoviceHunter"
+}
 
--- Fonction pour acheter un plot
-local function buyPlot()
-    local args = {
-        [1] = "buyPlot",
-        [2] = "1"
-    }
+ isHitting = Value
 
-    if isHitting then
-        -- Lancer une boucle non bloquante
-        task.spawn(function()
-            while isHitting do
-                game:GetService("ReplicatedStorage").PlotSystemRE:FireServer(unpack(args))
-                task.wait(0.1) -- Pause
-            end
-        end)
-    end
+        if isHitting then
+            -- Lancer une boucle non bloquante
+            task.spawn(function()
+                while isHitting do
+
+game:GetService("ReplicatedStorage").Events.TitleEvent:FireServer(unpack(args))
+task.wait(0.1) -- Pause
 end
+            end)
+        end
+   -- The function that takes place when the toggle is pressed
+   -- The variable (Value) is a boolean on whether the toggle is true or false
+   end,
+})
 
--- Fonction pour le titre NoviceHunter
-local function noviceHunter()
-    local args = {
-        [1] = "NoviceHunter"
-    }
 
-    if isHitting then
-        -- Lancer une boucle non bloquante
-        task.spawn(function()
-            while isHitting do
-                game:GetService("ReplicatedStorage").Events.TitleEvent:FireServer(unpack(args))
-                task.wait(0.1) -- Pause
-            end
-        end)
-    end
+
+local Toggle = titreTab:CreateToggle({
+   Name = "TP maison🏠",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+local args = {
+    [1] = "buyPlot",
+    [2] = "1"
+}
+
+ isHitting = Value
+
+        if isHitting then
+            -- Lancer une boucle non bloquante
+            task.spawn(function()
+                while isHitting do
+
+while true do
+    game:GetService("ReplicatedStorage").PlotSystemRE:FireServer(unpack(args))
+task.wait(0.1) -- Pause
 end
-
--- Fonction pour utiliser un humanoïde
-local function useHumanoid()
-    local args = {
-        [1] = game:GetService("Players").LocalPlayer.Character.Humanoid,
-        [2] = 1
-    }
-
-    if isHitting then
-        -- Lancer une boucle non bloquante
-        task.spawn(function()
-            while isHitting do
-                game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
-                task.wait(0.1) -- Pause
-            end
-        end)
-    end
-end
-
--- Appel des fonctions
-buyPlot()
-noviceHunter()
-useHumanoid()
+            end)
+        end
    -- The function that takes place when the toggle is pressed
    -- The variable (Value) is a boolean on whether the toggle is true or false
    end,
