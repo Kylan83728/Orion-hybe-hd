@@ -299,3 +299,23 @@ end
    -- The variable (Value) is a boolean on whether the toggle is true or false
    end,
 })
+
+
+
+local Input = pvpTab:CreateInput({
+   Name = "carry player",
+   CurrentValue = "",
+   PlaceholderText = "Input Placeholder",
+   RemoveTextAfterFocusLost = false,
+   Flag = "Input1",
+   Callback = function(Text)
+   local args = {
+    [1] = game:GetService("Players").LocalPlayer,
+    [2] = "request_accepted"
+}
+
+game:GetService("ReplicatedStorage").Events.CarryEvent:FireServer(unpack(args))
+   -- The function that takes place when the input is changed
+   -- The variable (Text) is a string for the value in the text box
+   end,
+})
