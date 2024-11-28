@@ -276,25 +276,39 @@ local Toggle = pvpTab:CreateToggle({
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-local distance = 40 -- Définissez la distance souhaitée ici
+local distance = 50 -- Définissez la distance souhaitée ici
 
-local args = {
-    [1] = game:GetService("Players"):FindFirstChild("1laaa_0").Character.Humanoid,
-    [2] = distance -- Utilisez la variable distance ici
-}
+local player = game:GetService("Players"):FindFirstChild("1laaa_0")
+local character = player and player.Character
+local humanoid = character and character:FindFirstChildOfClass("Humanoid")
 
- isHitting = Value
-
-        if isHitting then
-            -- Lancer une boucle non bloquante
-            task.spawn(function()
-                while isHitting do
-
-game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
-task.wait(0.1) -- Pause
-end
-            end)
+local function damageNearbyPlayers()
+    local players = game:GetService("Players"):GetPlayers()
+    for _, targetPlayer in ipairs(players) do
+        if targetPlayer ~= player then
+            local targetCharacter = targetPlayer.Character
+            if targetCharacter and (targetCharacter:WaitForChild("HumanoidRootPart").Position - humanoid.RootPart.Position).magnitude <= distance then
+                -- Ici, vous pouvez infliger des dégâts au joueur
+                local targetHumanoid = targetCharacter:FindFirstChildOfClass("Humanoid")
+                if targetHumanoid then
+                    targetHumanoid:TakeDamage(10) -- Changez 10 pour le montant de dégâts souhaité
+                end
+            end
         end
+    end
+end
+
+local isHitting = true -- Changez cela selon votre logique pour activer/désactiver
+
+if isHitting then
+    -- Lancer une boucle non bloquante
+    task.spawn(function()
+        while isHitting do
+            damageNearbyPlayers()
+            task.wait(0.1) -- Pause
+        end
+    end)
+end
    -- The function that takes place when the toggle is pressed
    -- The variable (Value) is a boolean on whether the toggle is true or false
    end,
