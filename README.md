@@ -274,26 +274,23 @@ local Toggle = pvpTab:CreateToggle({
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoid = character:WaitForChild("Humanoid")
-local range = 10 -- Distance à laquelle le kill aura agira
-local damage = 10 -- Dégâts infligés
+local args = {
+    [1] = game:GetService("Players").Agirljenifer09ss.Character.Humanoid,
+    [2] = 2
+}
 
-while true do
-    wait(1) -- Délai entre chaque vérification
-    for _, target in pairs(game.Players:GetPlayers()) do
-        if target ~= player and target.Character then
-            local targetHumanoid = target.Character:FindFirstChild("Humanoid")
-            local distance = (target.Character.HumanoidRootPart.Position - character.HumanoidRootPart.Position).magnitude
+ isHitting = Value
 
-            if distance <= range and targetHumanoid then
-                targetHumanoid:TakeDamage(damage) -- Inflige des dégâts
-            end
-        end
-    end
+        if isHitting then
+            -- Lancer une boucle non bloquante
+            task.spawn(function()
+                while isHitting do
+
+game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
+task.wait(0.1) -- Pause
 end
-attackNearbyPlayers()
+            end)
+        end
    -- The function that takes place when the toggle is pressed
    -- The variable (Value) is a boolean on whether the toggle is true or false
    end,
