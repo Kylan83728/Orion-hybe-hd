@@ -1,4 +1,3 @@
-
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local Window = Rayfield:CreateWindow({
    Name = "Rayfield Example Window",
@@ -304,16 +303,20 @@ end
 
 
 
-local isHitting = false
-local Toggle = pvpTab:CreateToggle({
-   Name = "carry player",
+
+local hommeTab = Window:CreateTab("Homme", 4483362458) -- Title, Image
+
+
+
+local Toggle = hommeTab:CreateToggle({
+   Name = "Toggle Example",
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
    local args = {
     [1] = {
         ["action"] = "damage",
-        ["damage"] = -inf
+        ["damage"] = -math.huge  -- Utilisez 'math.huge' pour représenter l'infini
     }
 }
 
@@ -324,12 +327,15 @@ local Toggle = pvpTab:CreateToggle({
             task.spawn(function()
                 while isHitting do
 
-game:GetService("ReplicatedStorage").Events.NPCDamageEvent:FireServer(unpack(args))
+while true do
+    game:GetService("ReplicatedStorage").Events.NPCDamageEvent:FireServer(unpack(args))
 task.wait(0.1) -- Pause
+    wait(0.1)  -- Attendre 1 seconde entre chaque envoi pour éviter une surcharge
+end
 end
             end)
         end
-   -- The function that takes place when the toggle is presse
+   -- The function that takes place when the toggle is pressed
    -- The variable (Value) is a boolean on whether the toggle is true or false
    end,
 })
