@@ -297,23 +297,3 @@ end
    -- The variable (Value) is a boolean on whether the toggle is true or false
    end,
 })
-
-
-
-wait(0.1) -- Pause
-                    print("Attaque lancée sur " .. targetPlayer.Name) -- Message de débogage
-                end
-            end
-        end
-    end
-end
-end
-            end)
-        end
-
-
-attackNearbyPlayers()
-   -- The function that takes place when the toggle is pressed
-   -- The variable (Value) is a boolean on whether the toggle is true or false
-   end,
-})
