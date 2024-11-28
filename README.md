@@ -276,11 +276,11 @@ local Toggle = pvpTab:CreateToggle({
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-local args = {
-    [1] = game:GetService("Players").Agirljenifer09ss.Character.Humanoid,
-    [2] = 2
-}
-
+    local args = {
+        [1] = game:GetService("Players").Skylady29.Character.Humanoid,
+        [2] = 1
+    }
+    
  isHitting = Value
 
         if isHitting then
@@ -288,10 +288,9 @@ local args = {
             task.spawn(function()
                 while isHitting do
 
-for i = 1, 10 do -- Changez 10 par le nombre de répétitions souhaité
     game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
     task.wait(0.1) -- Pause
-    wait(0.1) -- Attendre 1 seconde entre chaque itération, ajustez selon vos besoins
+    wait(1) -- Pause de 1 seconde entre chaque itération
 end
 end
             end)
