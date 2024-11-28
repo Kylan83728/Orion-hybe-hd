@@ -277,5 +277,3 @@ end
    -- The variable (Value) is a boolean on whether the toggle is true or false
    end,
 })
-
-local pvpTab = Window:CreateTab("PvP", 4483362458) -- Title, Image
