@@ -270,7 +270,7 @@ local titreTab = Window:CreateTab("Farm titre", 4483362458) -- Title, Image
 
 
 
-local Toggle = Tab:CreateToggle({
+local Toggle = titreTab:CreateToggle({
    Name = "farm titre❤️",
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
@@ -292,6 +292,23 @@ task.wait(0.1) -- Pause
 end
             end)
         end
+   -- The function that takes place when the toggle is pressed
+   -- The variable (Value) is a boolean on whether the toggle is true or false
+   end,
+})
+
+
+
+local pvpTab = Window:CreateTab("PvP", 4483362458) -- Title, Image
+
+
+
+local Toggle = pvpTab:CreateToggle({
+   Name = "kill aura 10",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   
    -- The function that takes place when the toggle is pressed
    -- The variable (Value) is a boolean on whether the toggle is true or false
    end,
