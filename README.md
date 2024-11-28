@@ -276,11 +276,13 @@ local Toggle = pvpTab:CreateToggle({
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-    local args = {
-        [1] = game:GetService("Players").Skylady29.Character.Humanoid,
-        [2] = 1
-    }
-    
+local distance = 40 -- Définissez la distance souhaitée ici
+
+local args = {
+    [1] = game:GetService("Players"):FindFirstChild("1laaa_0").Character.Humanoid,
+    [2] = distance -- Utilisez la variable distance ici
+}
+
  isHitting = Value
 
         if isHitting then
@@ -288,10 +290,8 @@ local Toggle = pvpTab:CreateToggle({
             task.spawn(function()
                 while isHitting do
 
-    game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
-    task.wait(0.1) -- Pause
-    wait(1) -- Pause de 1 seconde entre chaque itération
-end
+game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
+task.wait(0.1) -- Pause
 end
             end)
         end
