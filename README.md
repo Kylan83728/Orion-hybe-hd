@@ -263,8 +263,6 @@ local titreTab = Window:CreateTab("Farm titre", 4483362458) -- Title, Image
 
 
 
-local Paragraph = titreTab:CreateParagraph({Title = "activer tout", Content = "activer tout"})
-
 
 
 local isHitting = false
