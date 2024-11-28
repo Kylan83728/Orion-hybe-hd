@@ -316,7 +316,7 @@ local Input = pvpTab:CreateInput({
 
 
 
-local Button = Tab:CreateButton({
+local Button = pvpTab:CreateButton({
    Name = "Button",
    Callback = function()
    local args = {
