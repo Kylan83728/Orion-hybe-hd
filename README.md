@@ -260,5 +260,3 @@ loadstring(game:HttpGet("https://pastebin.com/raw/2n6FV7Sc"))()
 
 
 local titreTab = Window:CreateTab("Farm titre", 4483362458) -- Title, Image
-
-
