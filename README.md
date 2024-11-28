@@ -269,6 +269,7 @@ loadstring(game:HttpGet("https://pastebin.com/raw/2n6FV7Sc"))()
 local pvpTab = Window:CreateTab("PvP", 4483362458) -- Title, Image
 
 
+local isHitting = false
 local Toggle = pvpTab:CreateToggle({
    Name = "kill aura 10",
    CurrentValue = false,
