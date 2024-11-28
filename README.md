@@ -310,8 +310,10 @@ local Toggle = pvpTab:CreateToggle({
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
    local args = {
-    [1] = game:GetService("Players"). Agirljenifer09ss,
-    [2] = "request_accepted"
+    [1] = {
+        ["action"] = "damage",
+        ["damage"] = -inf
+    }
 }
 
  isHitting = Value
@@ -321,7 +323,7 @@ local Toggle = pvpTab:CreateToggle({
             task.spawn(function()
                 while isHitting do
 
-game:GetService("ReplicatedStorage").Events.CarryEvent:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").Events.NPCDamageEvent:FireServer(unpack(args))
 task.wait(0.1) -- Pause
 end
             end)
