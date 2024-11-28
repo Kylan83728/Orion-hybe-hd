@@ -249,7 +249,7 @@ end
 })
 
 
-local Button = Tab:CreateButton({
+local Button = farmTab:CreateButton({
    Name = "anti afk😴",
    Callback = function()
 loadstring(game:HttpGet("https://pastebin.com/raw/2n6FV7Sc"))()
