@@ -263,7 +263,3 @@ loadstring(game:HttpGet("https://pastebin.com/raw/2n6FV7Sc"))()
    -- The function that takes place when the button is pressed
    end,
 })
-
-
-
-local titreTab = Window:CreateTab("Farm titre", 4483362458) -- Title, Image
