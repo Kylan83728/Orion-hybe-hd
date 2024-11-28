@@ -271,48 +271,7 @@ local pvpTab = Window:CreateTab("PvP", 4483362458) -- Title, Image
 
 local isHitting = false
 local Toggle = pvpTab:CreateToggle({
-   Name = "kill aura 10",
-   CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoid = character:WaitForChild("Humanoid")
-local range = 10 -- Distance à laquelle l'aura inflige des dégâts
-local damage = 10 -- Dégâts infligés
-
-local function onAura()
-    local enemies = {} -- Liste des ennemis à proximité
-    for _, otherPlayer in pairs(game.Players:GetPlayers()) do
-        if otherPlayer ~= player and otherPlayer.Character and otherPlayer.Character:FindFirstChild("Humanoid") then
-            local distance = (character.HumanoidRootPart.Position - otherPlayer.Character.HumanoidRootPart.Position).magnitude
-            if distance <= range then
-                table.insert(enemies, otherPlayer)
-            end
-        end
-    end
-
-    for _, enemy in pairs(enemies) do
-        local enemyHumanoid = enemy.Character:FindFirstChild("Humanoid")
-        if enemyHumanoid then
-            enemyHumanoid:TakeDamage(damage)
-        end
-    end
-end
-
-while true do
-    onAura()
-    task.wait(0.1) -- Fréquence à laquelle l'aura est activée
-end
-   -- The function that takes place when the toggle is pressed
-   -- The variable (Value) is a boolean on whether the toggle is true or false
-   end,
-})
-
-
-
-local Toggle = pvpTab:CreateToggle({
-   Name = "kill aura 30",
+   Name = "kill aura👻",
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
@@ -331,7 +290,7 @@ local args = {
 for i = 1, 10 do -- Changez 10 par le nombre de répétitions souhaité
     game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
     task.wait(0.1) -- Pause
-    wait(1) -- Attendre 1 seconde entre chaque itération, ajustez selon vos besoins
+    wait(0.1) -- Attendre 1 seconde entre chaque itération, ajustez selon vos besoins
 end
 end
             end)
