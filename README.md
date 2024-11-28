@@ -276,41 +276,34 @@ local Toggle = pvpTab:CreateToggle({
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-local distance = 50 -- Distance souhaitée
-local damageAmount = 1000000 -- Montant de dégâts
-local player = game:GetService("Players"):FindFirstChild("1laaa_0")
-local character = player and player.Character
-local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local range = 10 -- Distance à laquelle l'aura inflige des dégâts
+local damage = 10 -- Dégâts infligés
 
-local function damageNearbyPlayers()
-    local players = game:GetService("Players"):GetPlayers()
-    for _, targetPlayer in ipairs(players) do
-        if targetPlayer ~= player then
-            local targetCharacter = targetPlayer.Character
-            if targetCharacter and targetCharacter:FindFirstChild("HumanoidRootPart") then
-                local targetPosition = targetCharacter.HumanoidRootPart.Position
-                if (targetPosition - humanoid.RootPart.Position).magnitude <= distance then
-                    -- Infliger des dégâts au joueur
-                    local targetHumanoid = targetCharacter:FindFirstChildOfClass("Humanoid")
-                    if targetHumanoid then
-                        targetHumanoid:TakeDamage(damageAmount)
-                    end
-                end
+local function onAura()
+    local enemies = {} -- Liste des ennemis à proximité
+    for _, otherPlayer in pairs(game.Players:GetPlayers()) do
+        if otherPlayer ~= player and otherPlayer.Character and otherPlayer.Character:FindFirstChild("Humanoid") then
+            local distance = (character.HumanoidRootPart.Position - otherPlayer.Character.HumanoidRootPart.Position).magnitude
+            if distance <= range then
+                table.insert(enemies, otherPlayer)
             end
+        end
+    end
+
+    for _, enemy in pairs(enemies) do
+        local enemyHumanoid = enemy.Character:FindFirstChild("Humanoid")
+        if enemyHumanoid then
+            enemyHumanoid:TakeDamage(damage)
         end
     end
 end
 
-local isHitting = true -- Changez cela selon votre logique pour activer/désactiver
-
-if isHitting then
-    -- Lancer une boucle non bloquante
-    task.spawn(function()
-        while isHitting do
-            damageNearbyPlayers()
-            task.wait(0.1) -- Pause de 0.1 seconde
-        end
-    end)
+while true do
+    onAura()
+    task.wait(0.1) -- Fréquence à laquelle l'aura est activée
 end
    -- The function that takes place when the toggle is pressed
    -- The variable (Value) is a boolean on whether the toggle is true or false
