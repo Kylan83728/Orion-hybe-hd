@@ -276,45 +276,20 @@ local Toggle = pvpTab:CreateToggle({
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local player = Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoid = character:WaitForChild("Humanoid")
+while true do
+    local args = {
+        [1] = {
+            ["action"] = "damage player",
+            ["damage"] = 1000000000000  -- Remplace 1000000000000 par le montant de dégâts que tu souhaites infliger
+        }
+    }
 
-local isHitting = false
-local hitRadius = 10 -- Modifiez ce rayon selon vos besoins
-
-local function onHit()
-    local enemies = {} -- Liste des ennemis à frapper
-    for _, v in pairs(Players:GetPlayers()) do
-        if v ~= player and v.Character and (v.Character.HumanoidRootPart.Position - character.HumanoidRootPart.Position).magnitude <= hitRadius then
-            table.insert(enemies, v.Character.Humanoid)
-        end
-    end
-
-    for _, enemy in pairs(enemies) do
-        ReplicatedStorage:WaitForChild("YourRemoteEventName"):FireServer(enemy)
-    end
+    ReplicatedStorage.Events.NPCDamageEvent:FireServer(unpack(args))
+    
+    wait(0.1)  -- Attendre 1 seconde entre chaque envoi. Ajuste ce délai selon tes besoins.
 end
-
-local function toggleAura()
-    isHitting = not isHitting -- Toggle l'état
-    if isHitting then
-        while isHitting do
-            onHit()
-            task.wait(0.1) -- Pause entre les attaques
-        end
-    end
-end
-
--- Lier la fonction de basculement à une touche ou un événement
-game:GetService("UserInputService").InputBegan:Connect(function(input)
-    if input.KeyCode == Enum.KeyCode.E then -- Modifiez la touche selon vos besoins
-        toggleAura()
-    end
-end)
    -- The function that takes place when the toggle is pressed
    -- The variable (Value) is a boolean on whether the toggle is true or false
    end,
