@@ -1,6 +1,6 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local Window = Rayfield:CreateWindow({
-   Name = "ASTRAL HUB-animal simulator🐻",
+   Name = "ASTRAL HUB - animal simulator🐻",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "animal simulator🐻",
    LoadingSubtitle = "hub",
@@ -276,47 +276,45 @@ local Toggle = pvpTab:CreateToggle({
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-local isHitting = Value -- Assurez-vous que 'Value' est défini quelque part
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
--- Fonction pour infliger des dégâts infinis
-local function inflictInfiniteDamage()
-    local args = {
-        [1] = {
-            ["action"] = "damage",
-            ["damage"] = math.huge
-        }
-    }
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
 
-    if isHitting then
-        task.spawn(function()
-            while isHitting do
-                game:GetService("ReplicatedStorage").Events.NPCDamageEvent:FireServer(unpack(args))
-                task.wait(0.1) -- Pause
-            end
-        end)
+local isHitting = false
+local hitRadius = 10 -- Modifiez ce rayon selon vos besoins
+
+local function onHit()
+    local enemies = {} -- Liste des ennemis à frapper
+    for _, v in pairs(Players:GetPlayers()) do
+        if v ~= player and v.Character and (v.Character.HumanoidRootPart.Position - character.HumanoidRootPart.Position).magnitude <= hitRadius then
+            table.insert(enemies, v.Character.Humanoid)
+        end
+    end
+
+    for _, enemy in pairs(enemies) do
+        ReplicatedStorage:WaitForChild("YourRemoteEventName"):FireServer(enemy)
     end
 end
 
--- Fonction pour infliger des dégâts fixes
-local function inflictFixedDamage(newDamage)
-    local args = {
-        [1] = game:GetService("Players").LocalPlayer.Character.Humanoid,
-        [2] = newDamage -- Utilisez newDamage ici
-    }
-
+local function toggleAura()
+    isHitting = not isHitting -- Toggle l'état
     if isHitting then
-        task.spawn(function()
-            while isHitting do
-                game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
-                task.wait(0.1) -- Pause
-            end
-        end)
+        while isHitting do
+            onHit()
+            task.wait(0.1) -- Pause entre les attaques
+        end
     end
 end
 
--- Appel des fonctions
-inflictInfiniteDamage() -- Appel pour infliger des dégâts infinis
-inflictFixedDamage(5) -- Changez la valeur pour définir les nouveaux dégâts
+-- Lier la fonction de basculement à une touche ou un événement
+game:GetService("UserInputService").InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.E then -- Modifiez la touche selon vos besoins
+        toggleAura()
+    end
+end)
    -- The function that takes place when the toggle is pressed
    -- The variable (Value) is a boolean on whether the toggle is true or false
    end,
