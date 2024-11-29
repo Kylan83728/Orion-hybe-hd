@@ -1,9 +1,9 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local Window = Rayfield:CreateWindow({
-   Name = "Rayfield Example Window",
+   Name = "ASTRAL HUB-animal simulator🐻",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
-   LoadingTitle = "Rayfield Interface Suite",
-   LoadingSubtitle = "by Sirius",
+   LoadingTitle = "animal simulator🐻",
+   LoadingSubtitle = "hub",
    Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
 
    DisableRayfieldPrompts = false,
@@ -276,35 +276,47 @@ local Toggle = pvpTab:CreateToggle({
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoid = character:WaitForChild("Humanoid")
-local range = 10 -- Distance à laquelle l'aura inflige des dégâts
-local damage = 10 -- Dégâts infligés
+local isHitting = Value -- Assurez-vous que 'Value' est défini quelque part
 
-local function onAura()
-    local enemies = {} -- Liste des ennemis à proximité
-    for _, otherPlayer in pairs(game.Players:GetPlayers()) do
-        if otherPlayer ~= player and otherPlayer.Character and otherPlayer.Character:FindFirstChild("Humanoid") then
-            local distance = (character.HumanoidRootPart.Position - otherPlayer.Character.HumanoidRootPart.Position).magnitude
-            if distance <= range then
-                table.insert(enemies, otherPlayer)
+-- Fonction pour infliger des dégâts infinis
+local function inflictInfiniteDamage()
+    local args = {
+        [1] = {
+            ["action"] = "damage",
+            ["damage"] = math.huge
+        }
+    }
+
+    if isHitting then
+        task.spawn(function()
+            while isHitting do
+                game:GetService("ReplicatedStorage").Events.NPCDamageEvent:FireServer(unpack(args))
+                task.wait(0.1) -- Pause
             end
-        end
-    end
-
-    for _, enemy in pairs(enemies) do
-        local enemyHumanoid = enemy.Character:FindFirstChild("Humanoid")
-        if enemyHumanoid then
-            enemyHumanoid:TakeDamage(damage)
-        end
+        end)
     end
 end
 
-while true do
-    onAura()
-    task.wait(0.1) -- Fréquence à laquelle l'aura est activée
+-- Fonction pour infliger des dégâts fixes
+local function inflictFixedDamage(newDamage)
+    local args = {
+        [1] = game:GetService("Players").LocalPlayer.Character.Humanoid,
+        [2] = newDamage -- Utilisez newDamage ici
+    }
+
+    if isHitting then
+        task.spawn(function()
+            while isHitting do
+                game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
+                task.wait(0.1) -- Pause
+            end
+        end)
+    end
 end
+
+-- Appel des fonctions
+inflictInfiniteDamage() -- Appel pour infliger des dégâts infinis
+inflictFixedDamage(5) -- Changez la valeur pour définir les nouveaux dégâts
    -- The function that takes place when the toggle is pressed
    -- The variable (Value) is a boolean on whether the toggle is true or false
    end,
